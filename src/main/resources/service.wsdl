@@ -1,0 +1,4213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.bacsoft.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.bacsoft.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.bacsoft.com/">
+      <s:element name="GetFieldIdentifiers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldIdentifiersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFieldIdentifiersResult" type="tns:ResultOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="Status">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="UserTokenExpired" />
+          <s:enumeration value="InvalidParameter" />
+          <s:enumeration value="UnknownError" />
+          <s:enumeration value="LoginFaiure" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetFieldValues">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldIdentifiers" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldValuesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFieldValuesResult" type="tns:ResultOfArrayOfFieldIdentValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfArrayOfFieldIdentValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfFieldIdentValue" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFieldIdentValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FieldIdentValue" nillable="true" type="tns:FieldIdentValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FieldIdentValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FieldIdent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindControllerIDs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="searchField" type="tns:FieldControllerSearchFields" />
+            <s:element minOccurs="1" maxOccurs="1" name="searchOptions" type="tns:ControllerSearchOptions" />
+            <s:element minOccurs="0" maxOccurs="1" name="searchCriteria" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="customerID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="FieldControllerSearchFields">
+        <s:restriction base="s:string">
+          <s:enumeration value="Name" />
+          <s:enumeration value="TemplateName" />
+          <s:enumeration value="Protocol" />
+          <s:enumeration value="OpcName" />
+          <s:enumeration value="Description" />
+          <s:enumeration value="MTCP_ID" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ControllerSearchOptions">
+        <s:restriction base="s:string">
+          <s:enumeration value="AllCustomers" />
+          <s:enumeration value="CaseSensitive" />
+          <s:enumeration value="MatchSubStrings" />
+          <s:enumeration value="SearchExpression" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ResultOfArrayOfItemIdent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfItemIdent" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfItemIdent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ItemIdent" nillable="true" type="tns:ItemIdent" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ItemIdent">
+        <s:attribute name="ID" type="s:string" />
+      </s:complexType>
+      <s:element name="FindControllerIDsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindControllerIDsResult" type="tns:ResultOfArrayOfItemIdent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindControllers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="searchField" type="tns:FieldControllerSearchFields" />
+            <s:element minOccurs="1" maxOccurs="1" name="searchOptions" type="tns:ControllerSearchOptions" />
+            <s:element minOccurs="0" maxOccurs="1" name="searchCriteria" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="customerID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="details" type="tns:Details" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="Details">
+        <s:restriction base="s:string">
+          <s:enumeration value="Controllers" />
+          <s:enumeration value="Fields" />
+          <s:enumeration value="FieldsDetails" />
+          <s:enumeration value="Events" />
+          <s:enumeration value="EventsDetails" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ResultOfArrayOfItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfItem" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Item" nillable="true" type="tns:Item" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Item">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:NamedItemIdent">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ExtraInfo" type="tns:ItemExtraInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="ChildNodes" type="tns:ArrayOfNamedItemIdent" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="NamedItemIdent">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ItemIdent">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ItemExtraInfo" abstract="true" />
+      <s:complexType name="ControllerExtraInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ItemExtraInfo">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ReadOnly" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="TimeStamp" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ControllerExtraInfo_V3">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ControllerExtraInfo">
+            <s:attribute name="ProtocolID" type="tns:ProtocolIDs" use="required" />
+            <s:attribute name="MTCP_ID" type="s:unsignedShort" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="ProtocolIDs">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="None" />
+              <s:enumeration value="ModbusRTU" />
+              <s:enumeration value="ModbusASCII" />
+              <s:enumeration value="Raw" />
+              <s:enumeration value="MDLC" />
+              <s:enumeration value="Fluke" />
+              <s:enumeration value="Netafim" />
+              <s:enumeration value="ASCII" />
+              <s:enumeration value="SpecialCounter" />
+              <s:enumeration value="Solid" />
+              <s:enumeration value="PazGasTank" />
+              <s:enumeration value="PazGasTruck" />
+              <s:enumeration value="NamedFields" />
+              <s:enumeration value="NetafimRotem" />
+              <s:enumeration value="RZ" />
+              <s:enumeration value="MELSEC" />
+              <s:enumeration value="DNP3" />
+              <s:enumeration value="GenCell" />
+              <s:enumeration value="ServerStatus" />
+              <s:enumeration value="UnitVirtualController" />
+              <s:enumeration value="MultiModbus" />
+              <s:enumeration value="NamedFieldsWithPort" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:complexType name="FieldExtraInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ItemExtraInfo">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ReadOnly" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="MinValue" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="MaxValue" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="DiscreteValues" type="tns:ArrayOfDiscreteValue" />
+              <s:element minOccurs="1" maxOccurs="1" name="TimeStamp" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfDiscreteValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DiscreteValue" nillable="true" type="tns:DiscreteValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DiscreteValue">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FieldExtraInfo_V3">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FieldExtraInfo">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="FieldAddress" type="tns:FieldAddress" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FieldAddress" />
+      <s:complexType name="GenCellFieldAddress">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FieldAddress">
+            <s:attribute name="Register" type="s:int" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="RZFieldAddress">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FieldAddress">
+            <s:attribute name="Field" type="tns:RZFields" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="RZFields">
+        <s:restriction base="s:string">
+          <s:enumeration value="AnalogInput1" />
+          <s:enumeration value="AnalogInput2" />
+          <s:enumeration value="Flow" />
+          <s:enumeration value="A" />
+          <s:enumeration value="B" />
+          <s:enumeration value="C" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="NamedFieldAddress">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FieldAddress">
+            <s:attribute name="Field" type="s:string" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="SpecialCounterFieldAddress">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FieldAddress">
+            <s:attribute name="Field" type="tns:SpecialCounterFields" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="SpecialCounterFields">
+        <s:restriction base="s:string">
+          <s:enumeration value="Counter1" />
+          <s:enumeration value="Counter2" />
+          <s:enumeration value="Calculated1" />
+          <s:enumeration value="Calculated2" />
+          <s:enumeration value="CleanIndicator" />
+          <s:enumeration value="ElectricityIndicator" />
+          <s:enumeration value="kW" />
+          <s:enumeration value="kWh" />
+          <s:enumeration value="Kq" />
+          <s:enumeration value="KqH" />
+          <s:enumeration value="kVA" />
+          <s:enumeration value="Power" />
+          <s:enumeration value="kVAR" />
+          <s:enumeration value="kVARh" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="NetafimFieldAddress">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FieldAddress">
+            <s:attribute name="Field" type="tns:NetafimFields" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="NetafimFields">
+        <s:restriction base="s:string">
+          <s:enumeration value="Messages" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="FlukeFieldAddress">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FieldAddress">
+            <s:attribute name="Field" type="tns:FlukeFields" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="FlukeFields">
+        <s:restriction base="s:string">
+          <s:enumeration value="Nominal_Voltage" />
+          <s:enumeration value="Nominal_Freq" />
+          <s:enumeration value="Nominal_Current_Live" />
+          <s:enumeration value="Nominal_Current_Neutral" />
+          <s:enumeration value="Range_Voltage" />
+          <s:enumeration value="Range_Current_Live" />
+          <s:enumeration value="Range_Current_Neutral" />
+          <s:enumeration value="Block_Type" />
+          <s:enumeration value="Unread_Intervals" />
+          <s:enumeration value="Sampling_Interval" />
+          <s:enumeration value="Event_Positive_Tolerance" />
+          <s:enumeration value="Event_Negative_Tolerance" />
+          <s:enumeration value="Events_Memory_Model" />
+          <s:enumeration value="Events_Hysteresis" />
+          <s:enumeration value="Fluke_memory_model" />
+          <s:enumeration value="Unread_Events" />
+          <s:enumeration value="Fluke_Year" />
+          <s:enumeration value="Fluke_Month" />
+          <s:enumeration value="Fluke_Day" />
+          <s:enumeration value="Fluke_Hour" />
+          <s:enumeration value="Fluke_Minute" />
+          <s:enumeration value="Fluke_Second" />
+          <s:enumeration value="Interval_Year" />
+          <s:enumeration value="Interval_Month" />
+          <s:enumeration value="Interval_Day" />
+          <s:enumeration value="Interval_Hour" />
+          <s:enumeration value="Interval_Minute" />
+          <s:enumeration value="Interval_Second" />
+          <s:enumeration value="Freq_Avg" />
+          <s:enumeration value="VoltA_Max" />
+          <s:enumeration value="VoltB_Max" />
+          <s:enumeration value="VoltC_Max" />
+          <s:enumeration value="VoltA_Avg" />
+          <s:enumeration value="VoltB_Avg" />
+          <s:enumeration value="VoltC_Avg" />
+          <s:enumeration value="VoltA_Min" />
+          <s:enumeration value="VoltB_Min" />
+          <s:enumeration value="VoltC_Min" />
+          <s:enumeration value="Fundamental_VoltA" />
+          <s:enumeration value="Fundamental_VoltB" />
+          <s:enumeration value="Fundamental_VoltC" />
+          <s:enumeration value="THD_U_Max_A" />
+          <s:enumeration value="THD_U_Max_B" />
+          <s:enumeration value="THD_U_Max_C" />
+          <s:enumeration value="FlickerPstA" />
+          <s:enumeration value="FlickerPstB" />
+          <s:enumeration value="FlickerPstC" />
+          <s:enumeration value="Imbalance_AB" />
+          <s:enumeration value="Imbalance_AC" />
+          <s:enumeration value="Fundamental_I_A" />
+          <s:enumeration value="Fundamental_I_B" />
+          <s:enumeration value="Fundamental_I_C" />
+          <s:enumeration value="Fundamental_I_N" />
+          <s:enumeration value="THD_I_Max_A" />
+          <s:enumeration value="THD_I_Max_B" />
+          <s:enumeration value="THD_I_Max_C" />
+          <s:enumeration value="THD_I_Max_N" />
+          <s:enumeration value="THD_U_Mean_A" />
+          <s:enumeration value="THD_U_Mean_B" />
+          <s:enumeration value="THD_U_Mean_C" />
+          <s:enumeration value="THD_I_Mean_A" />
+          <s:enumeration value="THD_I_Mean_B" />
+          <s:enumeration value="THD_I_Mean_C" />
+          <s:enumeration value="THD_I_Mean_N" />
+          <s:enumeration value="FlickerPltA" />
+          <s:enumeration value="FlickerPltB" />
+          <s:enumeration value="FlickerPltC" />
+          <s:enumeration value="V02_A" />
+          <s:enumeration value="V03_A" />
+          <s:enumeration value="V04_A" />
+          <s:enumeration value="V05_A" />
+          <s:enumeration value="V06_A" />
+          <s:enumeration value="V07_A" />
+          <s:enumeration value="V08_A" />
+          <s:enumeration value="V09_A" />
+          <s:enumeration value="V10_A" />
+          <s:enumeration value="V11_A" />
+          <s:enumeration value="V12_A" />
+          <s:enumeration value="V13_A" />
+          <s:enumeration value="V14_A" />
+          <s:enumeration value="V15_A" />
+          <s:enumeration value="V16_A" />
+          <s:enumeration value="V17_A" />
+          <s:enumeration value="V18_A" />
+          <s:enumeration value="V19_A" />
+          <s:enumeration value="V20_A" />
+          <s:enumeration value="V21_A" />
+          <s:enumeration value="V22_A" />
+          <s:enumeration value="V23_A" />
+          <s:enumeration value="V24_A" />
+          <s:enumeration value="V25_A" />
+          <s:enumeration value="V26_A" />
+          <s:enumeration value="V27_A" />
+          <s:enumeration value="V28_A" />
+          <s:enumeration value="V29_A" />
+          <s:enumeration value="V30_A" />
+          <s:enumeration value="V31_A" />
+          <s:enumeration value="V32_A" />
+          <s:enumeration value="V33_A" />
+          <s:enumeration value="V34_A" />
+          <s:enumeration value="V35_A" />
+          <s:enumeration value="V36_A" />
+          <s:enumeration value="V37_A" />
+          <s:enumeration value="V38_A" />
+          <s:enumeration value="V39_A" />
+          <s:enumeration value="V40_A" />
+          <s:enumeration value="V41_A" />
+          <s:enumeration value="V42_A" />
+          <s:enumeration value="V43_A" />
+          <s:enumeration value="V44_A" />
+          <s:enumeration value="V45_A" />
+          <s:enumeration value="V46_A" />
+          <s:enumeration value="V47_A" />
+          <s:enumeration value="V48_A" />
+          <s:enumeration value="V49_A" />
+          <s:enumeration value="V50_A" />
+          <s:enumeration value="V02_B" />
+          <s:enumeration value="V03_B" />
+          <s:enumeration value="V04_B" />
+          <s:enumeration value="V05_B" />
+          <s:enumeration value="V06_B" />
+          <s:enumeration value="V07_B" />
+          <s:enumeration value="V08_B" />
+          <s:enumeration value="V09_B" />
+          <s:enumeration value="V10_B" />
+          <s:enumeration value="V11_B" />
+          <s:enumeration value="V12_B" />
+          <s:enumeration value="V13_B" />
+          <s:enumeration value="V14_B" />
+          <s:enumeration value="V15_B" />
+          <s:enumeration value="V16_B" />
+          <s:enumeration value="V17_B" />
+          <s:enumeration value="V18_B" />
+          <s:enumeration value="V19_B" />
+          <s:enumeration value="V20_B" />
+          <s:enumeration value="V21_B" />
+          <s:enumeration value="V22_B" />
+          <s:enumeration value="V23_B" />
+          <s:enumeration value="V24_B" />
+          <s:enumeration value="V25_B" />
+          <s:enumeration value="V26_B" />
+          <s:enumeration value="V27_B" />
+          <s:enumeration value="V28_B" />
+          <s:enumeration value="V29_B" />
+          <s:enumeration value="V30_B" />
+          <s:enumeration value="V31_B" />
+          <s:enumeration value="V32_B" />
+          <s:enumeration value="V33_B" />
+          <s:enumeration value="V34_B" />
+          <s:enumeration value="V35_B" />
+          <s:enumeration value="V36_B" />
+          <s:enumeration value="V37_B" />
+          <s:enumeration value="V38_B" />
+          <s:enumeration value="V39_B" />
+          <s:enumeration value="V40_B" />
+          <s:enumeration value="V41_B" />
+          <s:enumeration value="V42_B" />
+          <s:enumeration value="V43_B" />
+          <s:enumeration value="V44_B" />
+          <s:enumeration value="V45_B" />
+          <s:enumeration value="V46_B" />
+          <s:enumeration value="V47_B" />
+          <s:enumeration value="V48_B" />
+          <s:enumeration value="V49_B" />
+          <s:enumeration value="V50_B" />
+          <s:enumeration value="V02_C" />
+          <s:enumeration value="V03_C" />
+          <s:enumeration value="V04_C" />
+          <s:enumeration value="V05_C" />
+          <s:enumeration value="V06_C" />
+          <s:enumeration value="V07_C" />
+          <s:enumeration value="V08_C" />
+          <s:enumeration value="V09_C" />
+          <s:enumeration value="V10_C" />
+          <s:enumeration value="V11_C" />
+          <s:enumeration value="V12_C" />
+          <s:enumeration value="V13_C" />
+          <s:enumeration value="V14_C" />
+          <s:enumeration value="V15_C" />
+          <s:enumeration value="V16_C" />
+          <s:enumeration value="V17_C" />
+          <s:enumeration value="V18_C" />
+          <s:enumeration value="V19_C" />
+          <s:enumeration value="V20_C" />
+          <s:enumeration value="V21_C" />
+          <s:enumeration value="V22_C" />
+          <s:enumeration value="V23_C" />
+          <s:enumeration value="V24_C" />
+          <s:enumeration value="V25_C" />
+          <s:enumeration value="V26_C" />
+          <s:enumeration value="V27_C" />
+          <s:enumeration value="V28_C" />
+          <s:enumeration value="V29_C" />
+          <s:enumeration value="V30_C" />
+          <s:enumeration value="V31_C" />
+          <s:enumeration value="V32_C" />
+          <s:enumeration value="V33_C" />
+          <s:enumeration value="V34_C" />
+          <s:enumeration value="V35_C" />
+          <s:enumeration value="V36_C" />
+          <s:enumeration value="V37_C" />
+          <s:enumeration value="V38_C" />
+          <s:enumeration value="V39_C" />
+          <s:enumeration value="V40_C" />
+          <s:enumeration value="V41_C" />
+          <s:enumeration value="V42_C" />
+          <s:enumeration value="V43_C" />
+          <s:enumeration value="V44_C" />
+          <s:enumeration value="V45_C" />
+          <s:enumeration value="V46_C" />
+          <s:enumeration value="V47_C" />
+          <s:enumeration value="V48_C" />
+          <s:enumeration value="V49_C" />
+          <s:enumeration value="V50_C" />
+          <s:enumeration value="VoltageInterharmonics01_A" />
+          <s:enumeration value="VoltageInterharmonics02_A" />
+          <s:enumeration value="VoltageInterharmonics03_A" />
+          <s:enumeration value="VoltageInterharmonics04_A" />
+          <s:enumeration value="VoltageInterharmonics05_A" />
+          <s:enumeration value="VoltageInterharmonics01_B" />
+          <s:enumeration value="VoltageInterharmonics02_B" />
+          <s:enumeration value="VoltageInterharmonics03_B" />
+          <s:enumeration value="VoltageInterharmonics04_B" />
+          <s:enumeration value="VoltageInterharmonics05_B" />
+          <s:enumeration value="VoltageInterharmonics01_C" />
+          <s:enumeration value="VoltageInterharmonics02_C" />
+          <s:enumeration value="VoltageInterharmonics03_C" />
+          <s:enumeration value="VoltageInterharmonics04_C" />
+          <s:enumeration value="VoltageInterharmonics05_C" />
+          <s:enumeration value="I02_A" />
+          <s:enumeration value="I03_A" />
+          <s:enumeration value="I04_A" />
+          <s:enumeration value="I05_A" />
+          <s:enumeration value="I06_A" />
+          <s:enumeration value="I07_A" />
+          <s:enumeration value="I08_A" />
+          <s:enumeration value="I09_A" />
+          <s:enumeration value="I10_A" />
+          <s:enumeration value="I11_A" />
+          <s:enumeration value="I12_A" />
+          <s:enumeration value="I13_A" />
+          <s:enumeration value="I14_A" />
+          <s:enumeration value="I15_A" />
+          <s:enumeration value="I16_A" />
+          <s:enumeration value="I17_A" />
+          <s:enumeration value="I18_A" />
+          <s:enumeration value="I19_A" />
+          <s:enumeration value="I20_A" />
+          <s:enumeration value="I21_A" />
+          <s:enumeration value="I22_A" />
+          <s:enumeration value="I23_A" />
+          <s:enumeration value="I24_A" />
+          <s:enumeration value="I25_A" />
+          <s:enumeration value="I26_A" />
+          <s:enumeration value="I27_A" />
+          <s:enumeration value="I28_A" />
+          <s:enumeration value="I29_A" />
+          <s:enumeration value="I30_A" />
+          <s:enumeration value="I31_A" />
+          <s:enumeration value="I32_A" />
+          <s:enumeration value="I33_A" />
+          <s:enumeration value="I34_A" />
+          <s:enumeration value="I35_A" />
+          <s:enumeration value="I36_A" />
+          <s:enumeration value="I37_A" />
+          <s:enumeration value="I38_A" />
+          <s:enumeration value="I39_A" />
+          <s:enumeration value="I40_A" />
+          <s:enumeration value="I41_A" />
+          <s:enumeration value="I42_A" />
+          <s:enumeration value="I43_A" />
+          <s:enumeration value="I44_A" />
+          <s:enumeration value="I45_A" />
+          <s:enumeration value="I46_A" />
+          <s:enumeration value="I47_A" />
+          <s:enumeration value="I48_A" />
+          <s:enumeration value="I49_A" />
+          <s:enumeration value="I50_A" />
+          <s:enumeration value="I02_B" />
+          <s:enumeration value="I03_B" />
+          <s:enumeration value="I04_B" />
+          <s:enumeration value="I05_B" />
+          <s:enumeration value="I06_B" />
+          <s:enumeration value="I07_B" />
+          <s:enumeration value="I08_B" />
+          <s:enumeration value="I09_B" />
+          <s:enumeration value="I10_B" />
+          <s:enumeration value="I11_B" />
+          <s:enumeration value="I12_B" />
+          <s:enumeration value="I13_B" />
+          <s:enumeration value="I14_B" />
+          <s:enumeration value="I15_B" />
+          <s:enumeration value="I16_B" />
+          <s:enumeration value="I17_B" />
+          <s:enumeration value="I18_B" />
+          <s:enumeration value="I19_B" />
+          <s:enumeration value="I20_B" />
+          <s:enumeration value="I21_B" />
+          <s:enumeration value="I22_B" />
+          <s:enumeration value="I23_B" />
+          <s:enumeration value="I24_B" />
+          <s:enumeration value="I25_B" />
+          <s:enumeration value="I26_B" />
+          <s:enumeration value="I27_B" />
+          <s:enumeration value="I28_B" />
+          <s:enumeration value="I29_B" />
+          <s:enumeration value="I30_B" />
+          <s:enumeration value="I31_B" />
+          <s:enumeration value="I32_B" />
+          <s:enumeration value="I33_B" />
+          <s:enumeration value="I34_B" />
+          <s:enumeration value="I35_B" />
+          <s:enumeration value="I36_B" />
+          <s:enumeration value="I37_B" />
+          <s:enumeration value="I38_B" />
+          <s:enumeration value="I39_B" />
+          <s:enumeration value="I40_B" />
+          <s:enumeration value="I41_B" />
+          <s:enumeration value="I42_B" />
+          <s:enumeration value="I43_B" />
+          <s:enumeration value="I44_B" />
+          <s:enumeration value="I45_B" />
+          <s:enumeration value="I46_B" />
+          <s:enumeration value="I47_B" />
+          <s:enumeration value="I48_B" />
+          <s:enumeration value="I49_B" />
+          <s:enumeration value="I50_B" />
+          <s:enumeration value="I02_C" />
+          <s:enumeration value="I03_C" />
+          <s:enumeration value="I04_C" />
+          <s:enumeration value="I05_C" />
+          <s:enumeration value="I06_C" />
+          <s:enumeration value="I07_C" />
+          <s:enumeration value="I08_C" />
+          <s:enumeration value="I09_C" />
+          <s:enumeration value="I10_C" />
+          <s:enumeration value="I11_C" />
+          <s:enumeration value="I12_C" />
+          <s:enumeration value="I13_C" />
+          <s:enumeration value="I14_C" />
+          <s:enumeration value="I15_C" />
+          <s:enumeration value="I16_C" />
+          <s:enumeration value="I17_C" />
+          <s:enumeration value="I18_C" />
+          <s:enumeration value="I19_C" />
+          <s:enumeration value="I20_C" />
+          <s:enumeration value="I21_C" />
+          <s:enumeration value="I22_C" />
+          <s:enumeration value="I23_C" />
+          <s:enumeration value="I24_C" />
+          <s:enumeration value="I25_C" />
+          <s:enumeration value="I26_C" />
+          <s:enumeration value="I27_C" />
+          <s:enumeration value="I28_C" />
+          <s:enumeration value="I29_C" />
+          <s:enumeration value="I30_C" />
+          <s:enumeration value="I31_C" />
+          <s:enumeration value="I32_C" />
+          <s:enumeration value="I33_C" />
+          <s:enumeration value="I34_C" />
+          <s:enumeration value="I35_C" />
+          <s:enumeration value="I36_C" />
+          <s:enumeration value="I37_C" />
+          <s:enumeration value="I38_C" />
+          <s:enumeration value="I39_C" />
+          <s:enumeration value="I40_C" />
+          <s:enumeration value="I41_C" />
+          <s:enumeration value="I42_C" />
+          <s:enumeration value="I43_C" />
+          <s:enumeration value="I44_C" />
+          <s:enumeration value="I45_C" />
+          <s:enumeration value="I46_C" />
+          <s:enumeration value="I47_C" />
+          <s:enumeration value="I48_C" />
+          <s:enumeration value="I49_C" />
+          <s:enumeration value="I50_C" />
+          <s:enumeration value="I02_N" />
+          <s:enumeration value="I03_N" />
+          <s:enumeration value="I04_N" />
+          <s:enumeration value="I05_N" />
+          <s:enumeration value="I06_N" />
+          <s:enumeration value="I07_N" />
+          <s:enumeration value="I08_N" />
+          <s:enumeration value="I09_N" />
+          <s:enumeration value="I10_N" />
+          <s:enumeration value="I11_N" />
+          <s:enumeration value="I12_N" />
+          <s:enumeration value="I13_N" />
+          <s:enumeration value="I14_N" />
+          <s:enumeration value="I15_N" />
+          <s:enumeration value="I16_N" />
+          <s:enumeration value="I17_N" />
+          <s:enumeration value="I18_N" />
+          <s:enumeration value="I19_N" />
+          <s:enumeration value="I20_N" />
+          <s:enumeration value="I21_N" />
+          <s:enumeration value="I22_N" />
+          <s:enumeration value="I23_N" />
+          <s:enumeration value="I24_N" />
+          <s:enumeration value="I25_N" />
+          <s:enumeration value="I26_N" />
+          <s:enumeration value="I27_N" />
+          <s:enumeration value="I28_N" />
+          <s:enumeration value="I29_N" />
+          <s:enumeration value="I30_N" />
+          <s:enumeration value="I31_N" />
+          <s:enumeration value="I32_N" />
+          <s:enumeration value="I33_N" />
+          <s:enumeration value="I34_N" />
+          <s:enumeration value="I35_N" />
+          <s:enumeration value="I36_N" />
+          <s:enumeration value="I37_N" />
+          <s:enumeration value="I38_N" />
+          <s:enumeration value="I39_N" />
+          <s:enumeration value="I40_N" />
+          <s:enumeration value="I41_N" />
+          <s:enumeration value="I42_N" />
+          <s:enumeration value="I43_N" />
+          <s:enumeration value="I44_N" />
+          <s:enumeration value="I45_N" />
+          <s:enumeration value="I46_N" />
+          <s:enumeration value="I47_N" />
+          <s:enumeration value="I48_N" />
+          <s:enumeration value="I49_N" />
+          <s:enumeration value="I50_N" />
+          <s:enumeration value="CurrentInterharmonics01_A" />
+          <s:enumeration value="CurrentInterharmonics02_A" />
+          <s:enumeration value="CurrentInterharmonics03_A" />
+          <s:enumeration value="CurrentInterharmonics04_A" />
+          <s:enumeration value="CurrentInterharmonics05_A" />
+          <s:enumeration value="CurrentInterharmonics01_B" />
+          <s:enumeration value="CurrentInterharmonics02_B" />
+          <s:enumeration value="CurrentInterharmonics03_B" />
+          <s:enumeration value="CurrentInterharmonics04_B" />
+          <s:enumeration value="CurrentInterharmonics05_B" />
+          <s:enumeration value="CurrentInterharmonics01_C" />
+          <s:enumeration value="CurrentInterharmonics02_C" />
+          <s:enumeration value="CurrentInterharmonics03_C" />
+          <s:enumeration value="CurrentInterharmonics04_C" />
+          <s:enumeration value="CurrentInterharmonics05_C" />
+          <s:enumeration value="CurrentInterharmonics01_N" />
+          <s:enumeration value="CurrentInterharmonics02_N" />
+          <s:enumeration value="CurrentInterharmonics03_N" />
+          <s:enumeration value="CurrentInterharmonics04_N" />
+          <s:enumeration value="CurrentInterharmonics05_N" />
+          <s:enumeration value="I_Mean_A" />
+          <s:enumeration value="I_Mean_B" />
+          <s:enumeration value="I_Mean_C" />
+          <s:enumeration value="I_Mean_N" />
+          <s:enumeration value="I_Max_A" />
+          <s:enumeration value="I_Max_B" />
+          <s:enumeration value="I_Max_C" />
+          <s:enumeration value="I_Max_N" />
+          <s:enumeration value="I_Peak_A" />
+          <s:enumeration value="I_Peak_B" />
+          <s:enumeration value="I_Peak_C" />
+          <s:enumeration value="I_Peak_N" />
+          <s:enumeration value="P_Mean_A" />
+          <s:enumeration value="P_Mean_B" />
+          <s:enumeration value="P_Mean_C" />
+          <s:enumeration value="P_Mean_Total" />
+          <s:enumeration value="P_Max_A" />
+          <s:enumeration value="P_Max_B" />
+          <s:enumeration value="P_Max_C" />
+          <s:enumeration value="P_Max_Total" />
+          <s:enumeration value="P_Min_A" />
+          <s:enumeration value="P_Min_B" />
+          <s:enumeration value="P_Min_C" />
+          <s:enumeration value="P_Min_Total" />
+          <s:enumeration value="PB_Mean_A" />
+          <s:enumeration value="PB_Mean_B" />
+          <s:enumeration value="PB_Mean_C" />
+          <s:enumeration value="PB_Mean_Total" />
+          <s:enumeration value="PB_Max_A" />
+          <s:enumeration value="PB_Max_B" />
+          <s:enumeration value="PB_Max_C" />
+          <s:enumeration value="PB_Max_Total" />
+          <s:enumeration value="PB_Min_A" />
+          <s:enumeration value="PB_Min_B" />
+          <s:enumeration value="PB_Min_C" />
+          <s:enumeration value="PB_Min_Total" />
+          <s:enumeration value="Q_Mean_A" />
+          <s:enumeration value="Q_Mean_B" />
+          <s:enumeration value="Q_Mean_C" />
+          <s:enumeration value="Q_Mean_Total" />
+          <s:enumeration value="Q_Max_A" />
+          <s:enumeration value="Q_Max_B" />
+          <s:enumeration value="Q_Max_C" />
+          <s:enumeration value="Q_Max_Total" />
+          <s:enumeration value="Q_Min_A" />
+          <s:enumeration value="Q_Min_B" />
+          <s:enumeration value="Q_Min_C" />
+          <s:enumeration value="Q_Min_Total" />
+          <s:enumeration value="S_Mean_A" />
+          <s:enumeration value="S_Mean_B" />
+          <s:enumeration value="S_Mean_C" />
+          <s:enumeration value="S_Mean_Total" />
+          <s:enumeration value="S_Max_A" />
+          <s:enumeration value="S_Max_B" />
+          <s:enumeration value="S_Max_C" />
+          <s:enumeration value="S_Max_Total" />
+          <s:enumeration value="S_Min_A" />
+          <s:enumeration value="S_Min_B" />
+          <s:enumeration value="S_Min_C" />
+          <s:enumeration value="S_Min_Total" />
+          <s:enumeration value="AbsP_Mean_A" />
+          <s:enumeration value="AbsP_Mean_B" />
+          <s:enumeration value="AbsP_Mean_C" />
+          <s:enumeration value="AbsP_Mean_Total" />
+          <s:enumeration value="AbsP_Max_A" />
+          <s:enumeration value="AbsP_Max_B" />
+          <s:enumeration value="AbsP_Max_C" />
+          <s:enumeration value="AbsP_Max_Total" />
+          <s:enumeration value="AbsP_Min_A" />
+          <s:enumeration value="AbsP_Min_B" />
+          <s:enumeration value="AbsP_Min_C" />
+          <s:enumeration value="AbsP_Min_Total" />
+          <s:enumeration value="PowerFactor_A" />
+          <s:enumeration value="PowerFactor_B" />
+          <s:enumeration value="PowerFactor_C" />
+          <s:enumeration value="PowerFactor_Total" />
+          <s:enumeration value="EnergyA" />
+          <s:enumeration value="EnergyB" />
+          <s:enumeration value="EnergyC" />
+          <s:enumeration value="EnergyTotal" />
+          <s:enumeration value="DipEventA_Value" />
+          <s:enumeration value="SwellEventA_Value" />
+          <s:enumeration value="InterruptEventA_Value" />
+          <s:enumeration value="DipEventB_Value" />
+          <s:enumeration value="SwellEventB_Value" />
+          <s:enumeration value="InterruptEventB_Value" />
+          <s:enumeration value="DipEventC_Value" />
+          <s:enumeration value="SwellEventC_Value" />
+          <s:enumeration value="InterruptEventC_Value" />
+          <s:enumeration value="Fundemental_P_A" />
+          <s:enumeration value="Fundemental_P_B" />
+          <s:enumeration value="Fundemental_P_C" />
+          <s:enumeration value="Fundemental_P_Total" />
+          <s:enumeration value="Fundemental_Q_A" />
+          <s:enumeration value="Fundemental_Q_B" />
+          <s:enumeration value="Fundemental_Q_C" />
+          <s:enumeration value="Fundemental_Q_Total" />
+          <s:enumeration value="Cos_PHI_A" />
+          <s:enumeration value="Cos_PHI_B" />
+          <s:enumeration value="Cos_PHI_C" />
+          <s:enumeration value="Cos_PHI_Total" />
+          <s:enumeration value="Fundemental_S_A" />
+          <s:enumeration value="Fundemental_S_B" />
+          <s:enumeration value="Fundemental_S_C" />
+          <s:enumeration value="Fundemental_S_Total" />
+          <s:enumeration value="DipEventA_Duration" />
+          <s:enumeration value="SwellEventA_Duration" />
+          <s:enumeration value="InterruptEventA_Duration" />
+          <s:enumeration value="DipEventB_Duration" />
+          <s:enumeration value="SwellEventB_Duration" />
+          <s:enumeration value="InterruptEventB_Duration" />
+          <s:enumeration value="DipEventC_Duration" />
+          <s:enumeration value="SwellEventC_Duration" />
+          <s:enumeration value="InterruptEventC_Duration" />
+          <s:enumeration value="V_Unbalance" />
+          <s:enumeration value="I_Unbalance" />
+          <s:enumeration value="V_Unbalance2" />
+          <s:enumeration value="I_Unbalance2" />
+          <s:enumeration value="GenField1" />
+          <s:enumeration value="GenField2" />
+          <s:enumeration value="GenField3" />
+          <s:enumeration value="GenField4" />
+          <s:enumeration value="GenField5" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ServerStatusFieldAddress">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FieldAddress">
+            <s:attribute name="Field" type="tns:ServerStatusFields" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="ServerStatusFields">
+        <s:restriction base="s:string">
+          <s:enumeration value="DiskSpace" />
+          <s:enumeration value="DatabaseSize" />
+          <s:enumeration value="PingAddress" />
+          <s:enumeration value="Time" />
+          <s:enumeration value="ProcessCPU" />
+          <s:enumeration value="TotalCPU" />
+          <s:enumeration value="PooledThreads" />
+          <s:enumeration value="ProcessMemory" />
+          <s:enumeration value="TotalUnits" />
+          <s:enumeration value="ActiveUnits" />
+          <s:enumeration value="ConnectedUnits" />
+          <s:enumeration value="ProcessUsedMemory" />
+          <s:enumeration value="LogicEval_Queue" />
+          <s:enumeration value="SqlPooledConnections" />
+          <s:enumeration value="SqlStasisConnections" />
+          <s:enumeration value="SqlFreeConnections" />
+          <s:enumeration value="SqlActiveConnections" />
+          <s:enumeration value="SqlActiveConnections_Percent" />
+          <s:enumeration value="SqlMaxPoolSize" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="DNP3FieldAddress">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FieldAddress">
+            <s:attribute name="Group" type="tns:DNP3Group" use="required" />
+            <s:attribute name="Offset" type="s:int" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="DNP3Group">
+        <s:restriction base="s:string">
+          <s:enumeration value="BIN_IN" />
+          <s:enumeration value="BIN_OUT" />
+          <s:enumeration value="ANA_IN" />
+          <s:enumeration value="ANA_OUT" />
+          <s:enumeration value="COUNTER" />
+          <s:enumeration value="BIN_OUT_LATCH" />
+          <s:enumeration value="BIN_OUT_PULSE" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="MelsecFieldAddress">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FieldAddress">
+            <s:attribute name="Device" type="tns:MELSEC_DeviceTypes" use="required" />
+            <s:attribute name="Address" type="s:unsignedInt" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="MELSEC_DeviceTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="SM" />
+          <s:enumeration value="SD" />
+          <s:enumeration value="X" />
+          <s:enumeration value="Y" />
+          <s:enumeration value="M" />
+          <s:enumeration value="L" />
+          <s:enumeration value="F" />
+          <s:enumeration value="V" />
+          <s:enumeration value="B" />
+          <s:enumeration value="D" />
+          <s:enumeration value="W" />
+          <s:enumeration value="TS" />
+          <s:enumeration value="TC" />
+          <s:enumeration value="TN" />
+          <s:enumeration value="LTS" />
+          <s:enumeration value="LTC" />
+          <s:enumeration value="LTN" />
+          <s:enumeration value="STS" />
+          <s:enumeration value="STC" />
+          <s:enumeration value="STN" />
+          <s:enumeration value="LSTS" />
+          <s:enumeration value="LSTC" />
+          <s:enumeration value="LSTN" />
+          <s:enumeration value="CS" />
+          <s:enumeration value="CC" />
+          <s:enumeration value="CN" />
+          <s:enumeration value="LCS" />
+          <s:enumeration value="LCC" />
+          <s:enumeration value="LCN" />
+          <s:enumeration value="SB" />
+          <s:enumeration value="SW" />
+          <s:enumeration value="DX" />
+          <s:enumeration value="DY" />
+          <s:enumeration value="Z" />
+          <s:enumeration value="LZ" />
+          <s:enumeration value="R" />
+          <s:enumeration value="ZR" />
+          <s:enumeration value="XD" />
+          <s:enumeration value="XW" />
+          <s:enumeration value="RD" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ModbusFieldAddress">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FieldAddress">
+            <s:attribute name="Region" type="tns:ModbusRegion" use="required" />
+            <s:attribute name="Offset" type="s:int" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="ModbusRegion">
+        <s:restriction base="s:string">
+          <s:enumeration value="Coils" />
+          <s:enumeration value="DigitalInputs" />
+          <s:enumeration value="InputRegisters" />
+          <s:enumeration value="HoldingRegisters" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="IOFieldAddress">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FieldAddress">
+            <s:attribute name="Type" type="tns:IOType" use="required" />
+            <s:attribute name="Number" type="s:int" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="IOType">
+        <s:restriction base="s:string">
+          <s:enumeration value="AnalogInputVoltage" />
+          <s:enumeration value="AnalogInputCurrent" />
+          <s:enumeration value="AnalogOutputVoltage" />
+          <s:enumeration value="AnalogOutputCurrent" />
+          <s:enumeration value="DigitalInput" />
+          <s:enumeration value="DigitalOutput" />
+          <s:enumeration value="Counter" />
+          <s:enumeration value="PT100" />
+          <s:enumeration value="SDI" />
+          <s:enumeration value="RFInput" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="IOFieldAddressWithSensorID">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:IOFieldAddress">
+            <s:attribute name="SensorID" type="s:string" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="SpecialFieldAddress">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FieldAddress">
+            <s:attribute name="Field" type="tns:SpecialFields" use="required" />
+            <s:attribute name="CalcExpr" type="s:string" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="SpecialFields">
+        <s:restriction base="s:string">
+          <s:enumeration value="NetworkSignalStrength" />
+          <s:enumeration value="GPRSNetworkState" />
+          <s:enumeration value="ControllerCommunicationStatus" />
+          <s:enumeration value="UnitConnected" />
+          <s:enumeration value="ExternalWatchDog" />
+          <s:enumeration value="UnitLastCommunication" />
+          <s:enumeration value="StaticLongitude" />
+          <s:enumeration value="StaticLatitude" />
+          <s:enumeration value="Longitude" />
+          <s:enumeration value="Latitude" />
+          <s:enumeration value="UnitReconnects" />
+          <s:enumeration value="ResetReason" />
+          <s:enumeration value="ModuleTemp" />
+          <s:enumeration value="TimeFromLastCommunications" />
+          <s:enumeration value="UnitIP" />
+          <s:enumeration value="CalcField" />
+          <s:enumeration value="VirtualField" />
+          <s:enumeration value="TH_SamplingInterval" />
+          <s:enumeration value="TH_QueueSize" />
+          <s:enumeration value="MovementSensor" />
+          <s:enumeration value="VCC" />
+          <s:enumeration value="BATT" />
+          <s:enumeration value="VOUT_Cur" />
+          <s:enumeration value="VOUT_Fuse" />
+          <s:enumeration value="TextVirtualField" />
+          <s:enumeration value="ServerTextVirtualField" />
+          <s:enumeration value="ProtocolNoChange" />
+          <s:enumeration value="EnteredModemMode" />
+          <s:enumeration value="FileUploadStatus" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="EventExtraInfo_V2">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ItemExtraInfo">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="TriggerValue1" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="TriggerValue2" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="TriggerType" type="tns:TriggerType" />
+              <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReadOnly" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CanChangeAlarmStatus" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="TimeStamp" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="Severity" type="tns:EventSeverity" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="TriggerType">
+        <s:restriction base="s:string">
+          <s:enumeration value="AnyChange" />
+          <s:enumeration value="UpperLimit" />
+          <s:enumeration value="LowerLimit" />
+          <s:enumeration value="Equals" />
+          <s:enumeration value="NotEquals" />
+          <s:enumeration value="Timer" />
+          <s:enumeration value="InRange" />
+          <s:enumeration value="NotInRange" />
+          <s:enumeration value="NoChange" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="EventSeverity">
+        <s:restriction base="s:string">
+          <s:enumeration value="Normal" />
+          <s:enumeration value="Warning" />
+          <s:enumeration value="Error" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="EventExtraInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ItemExtraInfo">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="TriggerValue" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="TriggerType" type="tns:TriggerType" />
+              <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReadOnly" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CanChangeAlarmStatus" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="TimeStamp" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfNamedItemIdent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="NamedItemIdent" nillable="true" type="tns:NamedItemIdent" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindControllersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindControllersResult" type="tns:ResultOfArrayOfItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="customer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ValidateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateUserResult" type="tns:ResultOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="customer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="tns:ResultOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Logout">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfBoolean">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Item" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="LogoutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LogoutResult" type="tns:ResultOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Browse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="itemID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:Item" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BrowseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BrowseResult" type="tns:ResultOfItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Browse_V2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="itemID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Browse_V2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Browse_V2Result" type="tns:ResultOfItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Browse_V3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="itemID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="details" type="tns:Details" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Browse_V3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Browse_V3Result" type="tns:ResultOfItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLoggedInUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:User" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="User">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:MultiUserUpdatableDataElement">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="LoginName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ContactID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Role" type="tns:UserRoles" />
+              <s:element minOccurs="0" maxOccurs="1" name="SID" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="MultiUserUpdatableDataElement" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseDataElement">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="TimeStamp" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BaseDataElement" abstract="true" />
+      <s:simpleType name="UserRoles">
+        <s:restriction base="s:string">
+          <s:enumeration value="SimpleUser" />
+          <s:enumeration value="ControllerManager" />
+          <s:enumeration value="Engineer" />
+          <s:enumeration value="CustomerAdministrator" />
+          <s:enumeration value="Integrator" />
+          <s:enumeration value="Auditor" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetLoggedInUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLoggedInUserResult" type="tns:ResultOfUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserPermissions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userID" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="objectType" type="tns:ObjectTypes" />
+            <s:element minOccurs="1" maxOccurs="1" name="objectID" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ObjectTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="Unit" />
+          <s:enumeration value="Controller" />
+          <s:enumeration value="ControllerClass" />
+          <s:enumeration value="Contact" />
+          <s:enumeration value="Customer" />
+          <s:enumeration value="CellularSupplier" />
+          <s:enumeration value="EmbeddedApplication" />
+          <s:enumeration value="FirmwareVersion" />
+          <s:enumeration value="User" />
+          <s:enumeration value="RecipientsGroup" />
+          <s:enumeration value="Level" />
+          <s:enumeration value="Field" />
+          <s:enumeration value="Menu" />
+          <s:enumeration value="SmsSendType" />
+          <s:enumeration value="Event" />
+          <s:enumeration value="HMIView" />
+          <s:enumeration value="HMIWidget" />
+          <s:enumeration value="Query" />
+          <s:enumeration value="Logic" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ResultOfArrayOfPermissionEntry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfPermissionEntry" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPermissionEntry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PermissionEntry" nillable="true" type="tns:PermissionEntry" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PermissionEntry">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ObjectType" type="tns:ObjectTypes" />
+          <s:element minOccurs="1" maxOccurs="1" name="ObjectID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccessRights" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUserPermissionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserPermissionsResult" type="tns:ResultOfArrayOfPermissionEntry" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetControllersStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdents" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfArrayOfControllerState">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfControllerState" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfControllerState">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ControllerState" nillable="true" type="tns:ControllerState" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ControllerState">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ControllerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ControllerStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ControllerStatus">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="OK" />
+              <s:enumeration value="Alarmed" />
+              <s:enumeration value="EndUnitNotConnected" />
+              <s:enumeration value="EndUnitNotConnectedError" />
+              <s:enumeration value="CommunicationError" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:element name="GetControllersStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetControllersStatusResult" type="tns:ResultOfArrayOfControllerState" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetControllersStatus_V2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdents" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfArrayOfControllerState_V2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfControllerState_V2" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfControllerState_V2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ControllerState_V2" nillable="true" type="tns:ControllerState_V2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ControllerState_V2">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ControllerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ControllerStatus_V2" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ControllerStatus_V2">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="OK" />
+              <s:enumeration value="HasErrors" />
+              <s:enumeration value="HasWarnings" />
+              <s:enumeration value="EndUnitNotConnected" />
+              <s:enumeration value="EndUnitNotConnectedError" />
+              <s:enumeration value="CommunicationError" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:element name="GetControllersStatus_V2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetControllersStatus_V2Result" type="tns:ResultOfArrayOfControllerState_V2" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetControllerFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldIDs" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ResultOfArrayOfFieldValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfFieldValue" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFieldValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FieldValue" nillable="true" type="tns:FieldValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FieldValue">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FieldID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetControllerFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetControllerFieldsResult" type="tns:ResultOfArrayOfFieldValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetControllerFieldsEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldIDs" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="convertToUnitTimeZone" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="options" type="tns:GetFieldsOptions" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="GetFieldsOptions">
+        <s:restriction base="s:string">
+          <s:enumeration value="Normal" />
+          <s:enumeration value="DirectUnitRead" />
+          <s:enumeration value="ReturnPendingWrites" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ResultOfArrayOfFieldValueWithTime">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfFieldValueWithTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFieldValueWithTime">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FieldValueWithTime" nillable="true" type="tns:FieldValueWithTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FieldValueWithTime">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FieldID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" />
+          <s:element minOccurs="1" maxOccurs="1" name="Time" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetControllerFieldsExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetControllerFieldsExResult" type="tns:ResultOfArrayOfFieldValueWithTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetField">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldIdent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="timeStamp" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="value" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetFieldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetFieldResult" type="tns:ResultOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetFieldEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldIdent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="timeStamp" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="value" />
+            <s:element minOccurs="1" maxOccurs="1" name="usePendingWrites" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetFieldExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetFieldExResult" type="tns:ResultOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetFieldWithTimestamp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldIdent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="timeStamp" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="value" />
+            <s:element minOccurs="1" maxOccurs="1" name="valueTimeStamp" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetFieldWithTimestampResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetFieldWithTimestampResult" type="tns:ResultOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetEventAlarmMode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="eventIdent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="enabled" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetEventAlarmModeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetEventAlarmModeResult" type="tns:ResultOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetEventSetPointValue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="eventIdent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="value" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetEventSetPointValueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetEventSetPointValueResult" type="tns:ResultOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetEventSetPointValue_V2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="eventIdent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="value1" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="value2" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetEventSetPointValue_V2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetEventSetPointValue_V2Result" type="tns:ResultOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetControllerEvents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfControllerEventsInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ControllerEventsInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ControllerEventsInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ControllerID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Events" type="tns:ArrayOfEventInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEventInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EventInfo" nillable="true" type="tns:EventInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EventInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ControllerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ControllerEventID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TriggerValue" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AlarmsEnabled" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanChangeAlarmsStatus" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetControllerEventsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetControllerEventsResult" type="tns:ResultOfControllerEventsInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetControllerEvents_V2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfControllerEventsInfo_V2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ControllerEventsInfo_V2" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ControllerEventsInfo_V2">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ControllerID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Events" type="tns:ArrayOfEventInfo_V2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEventInfo_V2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EventInfo_V2" nillable="true" type="tns:EventInfo_V2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EventInfo_V2">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ControllerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ControllerEventID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TriggerValue1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TriggerValue2" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AlarmsEnabled" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanChangeAlarmsStatus" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Severity" type="tns:EventSeverity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetControllerEvents_V2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetControllerEvents_V2Result" type="tns:ResultOfControllerEventsInfo_V2" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetControllersEvents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdents" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfArrayOfControllerEventsInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfControllerEventsInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfControllerEventsInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ControllerEventsInfo" nillable="true" type="tns:ControllerEventsInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetControllersEventsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetControllersEventsResult" type="tns:ResultOfArrayOfControllerEventsInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetControllersEvents_V2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdents" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfArrayOfControllerEventsInfo_V2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfControllerEventsInfo_V2" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfControllerEventsInfo_V2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ControllerEventsInfo_V2" nillable="true" type="tns:ControllerEventsInfo_V2" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetControllersEvents_V2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetControllersEvents_V2Result" type="tns:ResultOfArrayOfControllerEventsInfo_V2" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetControllerActiveEvents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfArrayOfInt32">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetControllerActiveEventsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetControllerActiveEventsResult" type="tns:ResultOfArrayOfInt32" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessagesHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rootNodeIdent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="messagesFilter" type="tns:MessageHistoryFilter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MessageHistoryFilter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="StartTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CustomerID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ControllerIDs" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="EventIDs" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactIDs" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendType" nillable="true" type="tns:AlarmSendType" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendAddress" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FirstLine" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxResponseLines" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="AlarmSendType">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="SMS" />
+              <s:enumeration value="Email" />
+              <s:enumeration value="Pager" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:complexType name="ResultOfArrayOfMessageHistoryRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfMessageHistoryRecord" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMessageHistoryRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MessageHistoryRecord" nillable="true" type="tns:MessageHistoryRecord" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MessageHistoryRecord">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="EventID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ControllerID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContactID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Time" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendType" type="tns:AlarmSendType" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CustomerID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubMessagesCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="InternationalMessage" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ToCharge" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="TimeZone" type="tns:TimeZone" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TimeZone" abstract="true" />
+      <s:element name="GetMessagesHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMessagesHistoryResult" type="tns:ResultOfArrayOfMessageHistoryRecord" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessagesHistoryTotals">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rootNodeIdent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="messagesFilter" type="tns:MessageHistoryFilter" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalsPeriod" type="tns:MessageHistoryTotalsPeriods" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalsGrouping" type="tns:MessageHistoryTotalsGrouping" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="MessageHistoryTotalsPeriods">
+        <s:restriction base="s:string">
+          <s:enumeration value="PerDay" />
+          <s:enumeration value="PerWeek" />
+          <s:enumeration value="PerMonth" />
+          <s:enumeration value="PerQuarter" />
+          <s:enumeration value="PerYear" />
+          <s:enumeration value="TotalOnly" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="MessageHistoryTotalsGrouping">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="None" />
+              <s:enumeration value="Event" />
+              <s:enumeration value="Controller" />
+              <s:enumeration value="Contact" />
+              <s:enumeration value="SendType" />
+              <s:enumeration value="SendAddress" />
+              <s:enumeration value="Customer" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:complexType name="ResultOfArrayOfMessageHistoryTotalsRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfMessageHistoryTotalsRecord" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMessageHistoryTotalsRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MessageHistoryTotalsRecord" nillable="true" type="tns:MessageHistoryTotalsRecord" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MessageHistoryTotalsRecord">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Time" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LocalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LocalSubMessagesCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OverseasCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OverseasSubMessagesCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PagerMessages" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PagerSubMessagesCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmailMessages" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EventID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ControllerID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContactID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendType" nillable="true" type="tns:AlarmSendType" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendAddress" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CustomerID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TimeZone" type="tns:TimeZone" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMessagesHistoryTotalsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMessagesHistoryTotalsResult" type="tns:ResultOfArrayOfMessageHistoryTotalsRecord" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventsHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rootNodeIdent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="eventsFilter" type="tns:EventHistoryFilter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EventHistoryFilter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="StartTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ControllerIDs" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="EventIDs" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="State" nillable="true" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ResultOfArrayOfEventHistoryRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfEventHistoryRecord" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEventHistoryRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EventHistoryRecord" nillable="true" type="tns:EventHistoryRecord" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EventHistoryRecord">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Time" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ControllerID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EventID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" />
+          <s:element minOccurs="1" maxOccurs="1" name="State" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="TimeZone" type="tns:TimeZone" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEventsHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEventsHistoryResult" type="tns:ResultOfArrayOfEventHistoryRecord" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldsHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fromDate" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="toDate" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllersFieldIDs" type="tns:ArrayOfControllerFieldIDs" />
+            <s:element minOccurs="1" maxOccurs="1" name="options" type="tns:FieldHistoryOptions" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfControllerFieldIDs">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ControllerFieldIDs" nillable="true" type="tns:ControllerFieldIDs" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ControllerFieldIDs">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ControllerID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldIDs" type="tns:ArrayOfInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="FieldHistoryOptions">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="Default" />
+              <s:enumeration value="ReturnRangeStart" />
+              <s:enumeration value="ExtendToRangeEnd" />
+              <s:enumeration value="UseEventArrival" />
+              <s:enumeration value="PassMaxLinesToServer" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:complexType name="ResultOfArrayOfControllerFieldsHistory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfControllerFieldsHistory" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfControllerFieldsHistory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ControllerFieldsHistory" nillable="true" type="tns:ControllerFieldsHistory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ControllerFieldsHistory">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ControllerID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldsHistory" type="tns:ArrayOfFieldHistory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFieldHistory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FieldHistory" nillable="true" type="tns:FieldHistory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FieldHistory">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FieldID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="History" type="tns:ArrayOfTimeValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTimeValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TimeValue" nillable="true" type="tns:TimeValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TimeValue">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Time" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFieldsHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFieldsHistoryResult" type="tns:ResultOfArrayOfControllerFieldsHistory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldsHistory2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fromDate" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="toDate" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllersFieldIDs" type="tns:ArrayOfControllerFieldIDs" />
+            <s:element minOccurs="1" maxOccurs="1" name="options" type="tns:FieldHistoryOptions" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfHistoryRegion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:HistoryRegion" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="HistoryRegion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:ArrayOfControllerFieldsHistory" />
+          <s:element minOccurs="1" maxOccurs="1" name="RangeStart" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="RangeEnd" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFieldsHistory2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFieldsHistory2Result" type="tns:ResultOfHistoryRegion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldsHistoryByArrival">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fromDate" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="toDate" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllersFieldIDs" type="tns:ArrayOfControllerFieldIDs" />
+            <s:element minOccurs="1" maxOccurs="1" name="options" type="tns:FieldHistoryOptions" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldsHistoryByArrivalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFieldsHistoryByArrivalResult" type="tns:ResultOfHistoryRegion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldsPartialHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fromDate" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="toDate" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllersFieldIDs" type="tns:ArrayOfControllerFieldIDs" />
+            <s:element minOccurs="1" maxOccurs="1" name="options" type="tns:FieldHistoryOptions" />
+            <s:element minOccurs="1" maxOccurs="1" name="size" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="position" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfPartialResultOfArrayOfControllerFieldsHistory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:PartialResultOfArrayOfControllerFieldsHistory" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PartialResultOfArrayOfControllerFieldsHistory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:ArrayOfControllerFieldsHistory" />
+          <s:element minOccurs="1" maxOccurs="1" name="GotAllData" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="NextPosition" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFieldsPartialHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFieldsPartialHistoryResult" type="tns:ResultOfPartialResultOfArrayOfControllerFieldsHistory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldsPartialHistory2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fromDate" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="toDate" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllersFieldIDs" type="tns:ArrayOfControllerFieldIDs" />
+            <s:element minOccurs="1" maxOccurs="1" name="options" type="tns:FieldHistoryOptions" />
+            <s:element minOccurs="1" maxOccurs="1" name="size" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="position" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfPartialResultOfHistoryRegion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:PartialResultOfHistoryRegion" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PartialResultOfHistoryRegion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:HistoryRegion" />
+          <s:element minOccurs="1" maxOccurs="1" name="GotAllData" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="NextPosition" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFieldsPartialHistory2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFieldsPartialHistory2Result" type="tns:ResultOfPartialResultOfHistoryRegion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldsPartialHistoryByArrival2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fromDate" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="toDate" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllersFieldIDs" type="tns:ArrayOfControllerFieldIDs" />
+            <s:element minOccurs="1" maxOccurs="1" name="options" type="tns:FieldHistoryOptions" />
+            <s:element minOccurs="1" maxOccurs="1" name="size" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="position" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldsPartialHistoryByArrival2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFieldsPartialHistoryByArrival2Result" type="tns:ResultOfPartialResultOfHistoryRegion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldsPartialHistoryByArrival">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fromDate" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="toDate" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllersFieldIDs" type="tns:ArrayOfControllerFieldIDs" />
+            <s:element minOccurs="1" maxOccurs="1" name="options" type="tns:FieldHistoryOptions" />
+            <s:element minOccurs="1" maxOccurs="1" name="size" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="position" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldsPartialHistoryByArrivalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFieldsPartialHistoryByArrivalResult" type="tns:ResultOfPartialResultOfHistoryRegion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendSMS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phoneNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfSmsResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:SmsResponse" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SmsResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Response" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SendSMSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendSMSResult" type="tns:ResultOfSmsResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendSMSToUnit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phoneNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="returnPhoneNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendSMSToUnitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendSMSToUnitResult" type="tns:ResultOfSmsResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMultiSMS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phoneNumbers" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfArrayOfSendSMSResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfSendSMSResult" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSendSMSResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SendSMSResult" nillable="true" type="tns:SendSMSResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SendSMSResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Response" type="s:string" />
+        </s:sequence>
+        <s:attribute name="Success" type="s:boolean" use="required" />
+        <s:attribute name="PhoneNumber" type="s:string" />
+      </s:complexType>
+      <s:element name="SendMultiSMSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendMultiSMSResult" type="tns:ResultOfArrayOfSendSMSResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMultiSMSToUnits">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phoneNumbers" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="returnPhoneNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMultiSMSToUnitsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendMultiSMSToUnitsResult" type="tns:ResultOfArrayOfSendSMSResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendSMSThroughUnit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="unitIdent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phoneNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendSMSThroughUnitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendSMSThroughUnitResult" type="tns:ResultOfSmsResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendSMSThroughUnitToUnit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="unitIdent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phoneNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="returnPhoneNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendSMSThroughUnitToUnitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendSMSThroughUnitToUnitResult" type="tns:ResultOfSmsResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendRawCommand">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rawMessage" type="s:base64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="checksum" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="responseSize" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="timeout" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfArrayOfByte">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:base64Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SendRawCommandResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendRawCommandResult" type="tns:ResultOfArrayOfByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendBiDirectionStream">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controllerIdent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="stream" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="checksum" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="responseSize" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="timeout" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendBiDirectionStreamResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendBiDirectionStreamResult" type="tns:ResultOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProgramPLC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="unitIdent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="port" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="comPort" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="start" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="timeout" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProgramPLCResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProgramPLCResult" type="tns:ResultOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EnterModemMode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="unitIdent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EnterModemModeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EnterModemModeResult" type="tns:ResultOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnitLog">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="unitIdent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnitLogResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUnitLogResult" type="tns:ResultOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnitParameters">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="unitIdent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfUnitParameters">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:UnitParameters" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UnitParameters">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TimeStamp" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastAccess" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ApnID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmergencyMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmergencyPhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SimCardNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SimCardPhoneNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnitID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="IMEI" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UnitSerialNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUnitParametersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUnitParametersResult" type="tns:ResultOfUnitParameters" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUnitParameters">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="unitParameters" type="tns:UnitParameters" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfDateTime">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Item" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateUnitParametersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateUnitParametersResult" type="tns:ResultOfDateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCellularSuppliersList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultOfArrayOfCellularSupplier">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:ArrayOfCellularSupplier" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCellularSupplier">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CellularSupplier" nillable="true" type="tns:CellularSupplier" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CellularSupplier">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Apns" type="tns:ArrayOfApn" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfApn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Apn" nillable="true" type="tns:Apn" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Apn">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ApnID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCellularSuppliersListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCellularSuppliersListResult" type="tns:ResultOfArrayOfCellularSupplier" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InitUnit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="unitIdent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InitUnitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InitUnitResult" type="tns:ResultOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetUnit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="unitIdent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetUnitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ResetUnitResult" type="tns:ResultOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PingUnit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="unitIdent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PingUnitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PingUnitResult" type="tns:ResultOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetControllerIdentifiers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="node" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetControllerIdentifiersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetControllerIdentifiersResult" type="tns:ResultOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetFieldIdentifiersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFieldIdentifiers" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldIdentifiersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFieldIdentifiersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldValuesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFieldValues" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldValuesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFieldValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindControllerIDsSoapIn">
+    <wsdl:part name="parameters" element="tns:FindControllerIDs" />
+  </wsdl:message>
+  <wsdl:message name="FindControllerIDsSoapOut">
+    <wsdl:part name="parameters" element="tns:FindControllerIDsResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindControllersSoapIn">
+    <wsdl:part name="parameters" element="tns:FindControllers" />
+  </wsdl:message>
+  <wsdl:message name="FindControllersSoapOut">
+    <wsdl:part name="parameters" element="tns:FindControllersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateUser" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSoapIn">
+    <wsdl:part name="parameters" element="tns:Logout" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSoapOut">
+    <wsdl:part name="parameters" element="tns:LogoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="BrowseSoapIn">
+    <wsdl:part name="parameters" element="tns:Browse" />
+  </wsdl:message>
+  <wsdl:message name="BrowseSoapOut">
+    <wsdl:part name="parameters" element="tns:BrowseResponse" />
+  </wsdl:message>
+  <wsdl:message name="Browse_V2SoapIn">
+    <wsdl:part name="parameters" element="tns:Browse_V2" />
+  </wsdl:message>
+  <wsdl:message name="Browse_V2SoapOut">
+    <wsdl:part name="parameters" element="tns:Browse_V2Response" />
+  </wsdl:message>
+  <wsdl:message name="Browse_V3SoapIn">
+    <wsdl:part name="parameters" element="tns:Browse_V3" />
+  </wsdl:message>
+  <wsdl:message name="Browse_V3SoapOut">
+    <wsdl:part name="parameters" element="tns:Browse_V3Response" />
+  </wsdl:message>
+  <wsdl:message name="GetLoggedInUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLoggedInUser" />
+  </wsdl:message>
+  <wsdl:message name="GetLoggedInUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLoggedInUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserPermissionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserPermissions" />
+  </wsdl:message>
+  <wsdl:message name="GetUserPermissionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetControllersStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetControllersStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetControllersStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetControllersStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetControllersStatus_V2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetControllersStatus_V2" />
+  </wsdl:message>
+  <wsdl:message name="GetControllersStatus_V2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetControllersStatus_V2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetControllerFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetControllerFields" />
+  </wsdl:message>
+  <wsdl:message name="GetControllerFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetControllerFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetControllerFieldsExSoapIn">
+    <wsdl:part name="parameters" element="tns:GetControllerFieldsEx" />
+  </wsdl:message>
+  <wsdl:message name="GetControllerFieldsExSoapOut">
+    <wsdl:part name="parameters" element="tns:GetControllerFieldsExResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetFieldSoapIn">
+    <wsdl:part name="parameters" element="tns:SetField" />
+  </wsdl:message>
+  <wsdl:message name="SetFieldSoapOut">
+    <wsdl:part name="parameters" element="tns:SetFieldResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetFieldExSoapIn">
+    <wsdl:part name="parameters" element="tns:SetFieldEx" />
+  </wsdl:message>
+  <wsdl:message name="SetFieldExSoapOut">
+    <wsdl:part name="parameters" element="tns:SetFieldExResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetFieldWithTimestampSoapIn">
+    <wsdl:part name="parameters" element="tns:SetFieldWithTimestamp" />
+  </wsdl:message>
+  <wsdl:message name="SetFieldWithTimestampSoapOut">
+    <wsdl:part name="parameters" element="tns:SetFieldWithTimestampResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetEventAlarmModeSoapIn">
+    <wsdl:part name="parameters" element="tns:SetEventAlarmMode" />
+  </wsdl:message>
+  <wsdl:message name="SetEventAlarmModeSoapOut">
+    <wsdl:part name="parameters" element="tns:SetEventAlarmModeResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetEventSetPointValueSoapIn">
+    <wsdl:part name="parameters" element="tns:SetEventSetPointValue" />
+  </wsdl:message>
+  <wsdl:message name="SetEventSetPointValueSoapOut">
+    <wsdl:part name="parameters" element="tns:SetEventSetPointValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetEventSetPointValue_V2SoapIn">
+    <wsdl:part name="parameters" element="tns:SetEventSetPointValue_V2" />
+  </wsdl:message>
+  <wsdl:message name="SetEventSetPointValue_V2SoapOut">
+    <wsdl:part name="parameters" element="tns:SetEventSetPointValue_V2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetControllerEventsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetControllerEvents" />
+  </wsdl:message>
+  <wsdl:message name="GetControllerEventsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetControllerEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetControllerEvents_V2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetControllerEvents_V2" />
+  </wsdl:message>
+  <wsdl:message name="GetControllerEvents_V2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetControllerEvents_V2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetControllersEventsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetControllersEvents" />
+  </wsdl:message>
+  <wsdl:message name="GetControllersEventsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetControllersEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetControllersEvents_V2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetControllersEvents_V2" />
+  </wsdl:message>
+  <wsdl:message name="GetControllersEvents_V2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetControllersEvents_V2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetControllerActiveEventsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetControllerActiveEvents" />
+  </wsdl:message>
+  <wsdl:message name="GetControllerActiveEventsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetControllerActiveEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMessagesHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessagesHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetMessagesHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetMessagesHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMessagesHistoryTotalsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessagesHistoryTotals" />
+  </wsdl:message>
+  <wsdl:message name="GetMessagesHistoryTotalsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMessagesHistoryTotalsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetEventsHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetEventsHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldsHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetFieldsHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldsHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetFieldsHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldsHistory2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetFieldsHistory2" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldsHistory2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetFieldsHistory2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldsHistoryByArrivalSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFieldsHistoryByArrival" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldsHistoryByArrivalSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFieldsHistoryByArrivalResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldsPartialHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetFieldsPartialHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldsPartialHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetFieldsPartialHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldsPartialHistory2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetFieldsPartialHistory2" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldsPartialHistory2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetFieldsPartialHistory2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldsPartialHistoryByArrival2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetFieldsPartialHistoryByArrival2" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldsPartialHistoryByArrival2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetFieldsPartialHistoryByArrival2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldsPartialHistoryByArrivalSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFieldsPartialHistoryByArrival" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldsPartialHistoryByArrivalSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFieldsPartialHistoryByArrivalResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendSMSSoapIn">
+    <wsdl:part name="parameters" element="tns:SendSMS" />
+  </wsdl:message>
+  <wsdl:message name="SendSMSSoapOut">
+    <wsdl:part name="parameters" element="tns:SendSMSResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendSMSToUnitSoapIn">
+    <wsdl:part name="parameters" element="tns:SendSMSToUnit" />
+  </wsdl:message>
+  <wsdl:message name="SendSMSToUnitSoapOut">
+    <wsdl:part name="parameters" element="tns:SendSMSToUnitResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendMultiSMSSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMultiSMS" />
+  </wsdl:message>
+  <wsdl:message name="SendMultiSMSSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMultiSMSResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendMultiSMSToUnitsSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMultiSMSToUnits" />
+  </wsdl:message>
+  <wsdl:message name="SendMultiSMSToUnitsSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMultiSMSToUnitsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendSMSThroughUnitSoapIn">
+    <wsdl:part name="parameters" element="tns:SendSMSThroughUnit" />
+  </wsdl:message>
+  <wsdl:message name="SendSMSThroughUnitSoapOut">
+    <wsdl:part name="parameters" element="tns:SendSMSThroughUnitResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendSMSThroughUnitToUnitSoapIn">
+    <wsdl:part name="parameters" element="tns:SendSMSThroughUnitToUnit" />
+  </wsdl:message>
+  <wsdl:message name="SendSMSThroughUnitToUnitSoapOut">
+    <wsdl:part name="parameters" element="tns:SendSMSThroughUnitToUnitResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendRawCommandSoapIn">
+    <wsdl:part name="parameters" element="tns:SendRawCommand" />
+  </wsdl:message>
+  <wsdl:message name="SendRawCommandSoapOut">
+    <wsdl:part name="parameters" element="tns:SendRawCommandResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendBiDirectionStreamSoapIn">
+    <wsdl:part name="parameters" element="tns:SendBiDirectionStream" />
+  </wsdl:message>
+  <wsdl:message name="SendBiDirectionStreamSoapOut">
+    <wsdl:part name="parameters" element="tns:SendBiDirectionStreamResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProgramPLCSoapIn">
+    <wsdl:part name="parameters" element="tns:ProgramPLC" />
+  </wsdl:message>
+  <wsdl:message name="ProgramPLCSoapOut">
+    <wsdl:part name="parameters" element="tns:ProgramPLCResponse" />
+  </wsdl:message>
+  <wsdl:message name="EnterModemModeSoapIn">
+    <wsdl:part name="parameters" element="tns:EnterModemMode" />
+  </wsdl:message>
+  <wsdl:message name="EnterModemModeSoapOut">
+    <wsdl:part name="parameters" element="tns:EnterModemModeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUnitLogSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUnitLog" />
+  </wsdl:message>
+  <wsdl:message name="GetUnitLogSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUnitLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUnitParametersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUnitParameters" />
+  </wsdl:message>
+  <wsdl:message name="GetUnitParametersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUnitParametersResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUnitParametersSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUnitParameters" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUnitParametersSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUnitParametersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCellularSuppliersListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCellularSuppliersList" />
+  </wsdl:message>
+  <wsdl:message name="GetCellularSuppliersListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCellularSuppliersListResponse" />
+  </wsdl:message>
+  <wsdl:message name="InitUnitSoapIn">
+    <wsdl:part name="parameters" element="tns:InitUnit" />
+  </wsdl:message>
+  <wsdl:message name="InitUnitSoapOut">
+    <wsdl:part name="parameters" element="tns:InitUnitResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResetUnitSoapIn">
+    <wsdl:part name="parameters" element="tns:ResetUnit" />
+  </wsdl:message>
+  <wsdl:message name="ResetUnitSoapOut">
+    <wsdl:part name="parameters" element="tns:ResetUnitResponse" />
+  </wsdl:message>
+  <wsdl:message name="PingUnitSoapIn">
+    <wsdl:part name="parameters" element="tns:PingUnit" />
+  </wsdl:message>
+  <wsdl:message name="PingUnitSoapOut">
+    <wsdl:part name="parameters" element="tns:PingUnitResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetControllerIdentifiersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetControllerIdentifiers" />
+  </wsdl:message>
+  <wsdl:message name="GetControllerIdentifiersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetControllerIdentifiersResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="GetFieldIdentifiers">
+      <wsdl:input message="tns:GetFieldIdentifiersSoapIn" />
+      <wsdl:output message="tns:GetFieldIdentifiersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldValues">
+      <wsdl:input message="tns:GetFieldValuesSoapIn" />
+      <wsdl:output message="tns:GetFieldValuesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindControllerIDs">
+      <wsdl:input message="tns:FindControllerIDsSoapIn" />
+      <wsdl:output message="tns:FindControllerIDsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindControllers">
+      <wsdl:input message="tns:FindControllersSoapIn" />
+      <wsdl:output message="tns:FindControllersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <wsdl:input message="tns:ValidateUserSoapIn" />
+      <wsdl:output message="tns:ValidateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <wsdl:input message="tns:LogoutSoapIn" />
+      <wsdl:output message="tns:LogoutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Browse">
+      <wsdl:input message="tns:BrowseSoapIn" />
+      <wsdl:output message="tns:BrowseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Browse_V2">
+      <wsdl:input message="tns:Browse_V2SoapIn" />
+      <wsdl:output message="tns:Browse_V2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Browse_V3">
+      <wsdl:input message="tns:Browse_V3SoapIn" />
+      <wsdl:output message="tns:Browse_V3SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLoggedInUser">
+      <wsdl:input message="tns:GetLoggedInUserSoapIn" />
+      <wsdl:output message="tns:GetLoggedInUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserPermissions">
+      <wsdl:input message="tns:GetUserPermissionsSoapIn" />
+      <wsdl:output message="tns:GetUserPermissionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetControllersStatus">
+      <wsdl:input message="tns:GetControllersStatusSoapIn" />
+      <wsdl:output message="tns:GetControllersStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetControllersStatus_V2">
+      <wsdl:input message="tns:GetControllersStatus_V2SoapIn" />
+      <wsdl:output message="tns:GetControllersStatus_V2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerFields">
+      <wsdl:input message="tns:GetControllerFieldsSoapIn" />
+      <wsdl:output message="tns:GetControllerFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerFieldsEx">
+      <wsdl:input message="tns:GetControllerFieldsExSoapIn" />
+      <wsdl:output message="tns:GetControllerFieldsExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetField">
+      <wsdl:input message="tns:SetFieldSoapIn" />
+      <wsdl:output message="tns:SetFieldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetFieldEx">
+      <wsdl:input message="tns:SetFieldExSoapIn" />
+      <wsdl:output message="tns:SetFieldExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetFieldWithTimestamp">
+      <wsdl:input message="tns:SetFieldWithTimestampSoapIn" />
+      <wsdl:output message="tns:SetFieldWithTimestampSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetEventAlarmMode">
+      <wsdl:input message="tns:SetEventAlarmModeSoapIn" />
+      <wsdl:output message="tns:SetEventAlarmModeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetEventSetPointValue">
+      <wsdl:input message="tns:SetEventSetPointValueSoapIn" />
+      <wsdl:output message="tns:SetEventSetPointValueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetEventSetPointValue_V2">
+      <wsdl:input message="tns:SetEventSetPointValue_V2SoapIn" />
+      <wsdl:output message="tns:SetEventSetPointValue_V2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerEvents">
+      <wsdl:input message="tns:GetControllerEventsSoapIn" />
+      <wsdl:output message="tns:GetControllerEventsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerEvents_V2">
+      <wsdl:input message="tns:GetControllerEvents_V2SoapIn" />
+      <wsdl:output message="tns:GetControllerEvents_V2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetControllersEvents">
+      <wsdl:input message="tns:GetControllersEventsSoapIn" />
+      <wsdl:output message="tns:GetControllersEventsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetControllersEvents_V2">
+      <wsdl:input message="tns:GetControllersEvents_V2SoapIn" />
+      <wsdl:output message="tns:GetControllersEvents_V2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerActiveEvents">
+      <wsdl:input message="tns:GetControllerActiveEventsSoapIn" />
+      <wsdl:output message="tns:GetControllerActiveEventsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessagesHistory">
+      <wsdl:input message="tns:GetMessagesHistorySoapIn" />
+      <wsdl:output message="tns:GetMessagesHistorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessagesHistoryTotals">
+      <wsdl:input message="tns:GetMessagesHistoryTotalsSoapIn" />
+      <wsdl:output message="tns:GetMessagesHistoryTotalsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsHistory">
+      <wsdl:input message="tns:GetEventsHistorySoapIn" />
+      <wsdl:output message="tns:GetEventsHistorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsHistory">
+      <wsdl:input message="tns:GetFieldsHistorySoapIn" />
+      <wsdl:output message="tns:GetFieldsHistorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsHistory2">
+      <wsdl:input message="tns:GetFieldsHistory2SoapIn" />
+      <wsdl:output message="tns:GetFieldsHistory2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsHistoryByArrival">
+      <wsdl:input message="tns:GetFieldsHistoryByArrivalSoapIn" />
+      <wsdl:output message="tns:GetFieldsHistoryByArrivalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsPartialHistory">
+      <wsdl:input message="tns:GetFieldsPartialHistorySoapIn" />
+      <wsdl:output message="tns:GetFieldsPartialHistorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsPartialHistory2">
+      <wsdl:input message="tns:GetFieldsPartialHistory2SoapIn" />
+      <wsdl:output message="tns:GetFieldsPartialHistory2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsPartialHistoryByArrival2">
+      <wsdl:input message="tns:GetFieldsPartialHistoryByArrival2SoapIn" />
+      <wsdl:output message="tns:GetFieldsPartialHistoryByArrival2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsPartialHistoryByArrival">
+      <wsdl:input message="tns:GetFieldsPartialHistoryByArrivalSoapIn" />
+      <wsdl:output message="tns:GetFieldsPartialHistoryByArrivalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendSMS">
+      <wsdl:input message="tns:SendSMSSoapIn" />
+      <wsdl:output message="tns:SendSMSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendSMSToUnit">
+      <wsdl:input message="tns:SendSMSToUnitSoapIn" />
+      <wsdl:output message="tns:SendSMSToUnitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMultiSMS">
+      <wsdl:input message="tns:SendMultiSMSSoapIn" />
+      <wsdl:output message="tns:SendMultiSMSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMultiSMSToUnits">
+      <wsdl:input message="tns:SendMultiSMSToUnitsSoapIn" />
+      <wsdl:output message="tns:SendMultiSMSToUnitsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendSMSThroughUnit">
+      <wsdl:input message="tns:SendSMSThroughUnitSoapIn" />
+      <wsdl:output message="tns:SendSMSThroughUnitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendSMSThroughUnitToUnit">
+      <wsdl:input message="tns:SendSMSThroughUnitToUnitSoapIn" />
+      <wsdl:output message="tns:SendSMSThroughUnitToUnitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendRawCommand">
+      <wsdl:input message="tns:SendRawCommandSoapIn" />
+      <wsdl:output message="tns:SendRawCommandSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendBiDirectionStream">
+      <wsdl:input message="tns:SendBiDirectionStreamSoapIn" />
+      <wsdl:output message="tns:SendBiDirectionStreamSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProgramPLC">
+      <wsdl:input message="tns:ProgramPLCSoapIn" />
+      <wsdl:output message="tns:ProgramPLCSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnterModemMode">
+      <wsdl:input message="tns:EnterModemModeSoapIn" />
+      <wsdl:output message="tns:EnterModemModeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnitLog">
+      <wsdl:input message="tns:GetUnitLogSoapIn" />
+      <wsdl:output message="tns:GetUnitLogSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnitParameters">
+      <wsdl:input message="tns:GetUnitParametersSoapIn" />
+      <wsdl:output message="tns:GetUnitParametersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUnitParameters">
+      <wsdl:input message="tns:UpdateUnitParametersSoapIn" />
+      <wsdl:output message="tns:UpdateUnitParametersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCellularSuppliersList">
+      <wsdl:input message="tns:GetCellularSuppliersListSoapIn" />
+      <wsdl:output message="tns:GetCellularSuppliersListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InitUnit">
+      <wsdl:input message="tns:InitUnitSoapIn" />
+      <wsdl:output message="tns:InitUnitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetUnit">
+      <wsdl:input message="tns:ResetUnitSoapIn" />
+      <wsdl:output message="tns:ResetUnitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PingUnit">
+      <wsdl:input message="tns:PingUnitSoapIn" />
+      <wsdl:output message="tns:PingUnitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerIdentifiers">
+      <wsdl:input message="tns:GetControllerIdentifiersSoapIn" />
+      <wsdl:output message="tns:GetControllerIdentifiersSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetFieldIdentifiers">
+      <soap:operation soapAction="http://www.bacsoft.com/GetFieldIdentifiers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldValues">
+      <soap:operation soapAction="http://www.bacsoft.com/GetFieldValues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindControllerIDs">
+      <soap:operation soapAction="http://www.bacsoft.com/FindControllerIDs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindControllers">
+      <soap:operation soapAction="http://www.bacsoft.com/FindControllers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <soap:operation soapAction="http://www.bacsoft.com/ValidateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://www.bacsoft.com/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap:operation soapAction="http://www.bacsoft.com/Logout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Browse">
+      <soap:operation soapAction="http://www.bacsoft.com/Browse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Browse_V2">
+      <soap:operation soapAction="http://www.bacsoft.com/Browse_V2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Browse_V3">
+      <soap:operation soapAction="http://www.bacsoft.com/Browse_V3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoggedInUser">
+      <soap:operation soapAction="http://www.bacsoft.com/GetLoggedInUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserPermissions">
+      <soap:operation soapAction="http://www.bacsoft.com/GetUserPermissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllersStatus">
+      <soap:operation soapAction="http://www.bacsoft.com/GetControllersStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllersStatus_V2">
+      <soap:operation soapAction="http://www.bacsoft.com/GetControllersStatus_V2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerFields">
+      <soap:operation soapAction="http://www.bacsoft.com/GetControllerFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerFieldsEx">
+      <soap:operation soapAction="http://www.bacsoft.com/GetControllerFieldsEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetField">
+      <soap:operation soapAction="http://www.bacsoft.com/SetField" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFieldEx">
+      <soap:operation soapAction="http://www.bacsoft.com/SetFieldEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFieldWithTimestamp">
+      <soap:operation soapAction="http://www.bacsoft.com/SetFieldWithTimestamp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetEventAlarmMode">
+      <soap:operation soapAction="http://www.bacsoft.com/SetEventAlarmMode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetEventSetPointValue">
+      <soap:operation soapAction="http://www.bacsoft.com/SetEventSetPointValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetEventSetPointValue_V2">
+      <soap:operation soapAction="http://www.bacsoft.com/SetEventSetPointValue_V2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerEvents">
+      <soap:operation soapAction="http://www.bacsoft.com/GetControllerEvents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerEvents_V2">
+      <soap:operation soapAction="http://www.bacsoft.com/GetControllerEvents_V2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllersEvents">
+      <soap:operation soapAction="http://www.bacsoft.com/GetControllersEvents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllersEvents_V2">
+      <soap:operation soapAction="http://www.bacsoft.com/GetControllersEvents_V2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerActiveEvents">
+      <soap:operation soapAction="http://www.bacsoft.com/GetControllerActiveEvents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessagesHistory">
+      <soap:operation soapAction="http://www.bacsoft.com/GetMessagesHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessagesHistoryTotals">
+      <soap:operation soapAction="http://www.bacsoft.com/GetMessagesHistoryTotals" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsHistory">
+      <soap:operation soapAction="http://www.bacsoft.com/GetEventsHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsHistory">
+      <soap:operation soapAction="http://www.bacsoft.com/GetFieldsHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsHistory2">
+      <soap:operation soapAction="http://www.bacsoft.com/GetFieldsHistory2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsHistoryByArrival">
+      <soap:operation soapAction="http://www.bacsoft.com/GetFieldsHistoryByArrival" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsPartialHistory">
+      <soap:operation soapAction="http://www.bacsoft.com/GetFieldsPartialHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsPartialHistory2">
+      <soap:operation soapAction="http://www.bacsoft.com/GetFieldsPartialHistory2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsPartialHistoryByArrival2">
+      <soap:operation soapAction="http://www.bacsoft.com/GetFieldsPartialHistoryByArrival2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsPartialHistoryByArrival">
+      <soap:operation soapAction="http://www.bacsoft.com/GetFieldsPartialHistoryByArrival" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSMS">
+      <soap:operation soapAction="http://www.bacsoft.com/SendSMS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSMSToUnit">
+      <soap:operation soapAction="http://www.bacsoft.com/SendSMSToUnit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMultiSMS">
+      <soap:operation soapAction="http://www.bacsoft.com/SendMultiSMS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMultiSMSToUnits">
+      <soap:operation soapAction="http://www.bacsoft.com/SendMultiSMSToUnits" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSMSThroughUnit">
+      <soap:operation soapAction="http://www.bacsoft.com/SendSMSThroughUnit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSMSThroughUnitToUnit">
+      <soap:operation soapAction="http://www.bacsoft.com/SendSMSThroughUnitToUnit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendRawCommand">
+      <soap:operation soapAction="http://www.bacsoft.com/SendRawCommand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendBiDirectionStream">
+      <soap:operation soapAction="http://www.bacsoft.com/SendBiDirectionStream" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProgramPLC">
+      <soap:operation soapAction="http://www.bacsoft.com/ProgramPLC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnterModemMode">
+      <soap:operation soapAction="http://www.bacsoft.com/EnterModemMode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnitLog">
+      <soap:operation soapAction="http://www.bacsoft.com/GetUnitLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnitParameters">
+      <soap:operation soapAction="http://www.bacsoft.com/GetUnitParameters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUnitParameters">
+      <soap:operation soapAction="http://www.bacsoft.com/UpdateUnitParameters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCellularSuppliersList">
+      <soap:operation soapAction="http://www.bacsoft.com/GetCellularSuppliersList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InitUnit">
+      <soap:operation soapAction="http://www.bacsoft.com/InitUnit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetUnit">
+      <soap:operation soapAction="http://www.bacsoft.com/ResetUnit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PingUnit">
+      <soap:operation soapAction="http://www.bacsoft.com/PingUnit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerIdentifiers">
+      <soap:operation soapAction="http://www.bacsoft.com/GetControllerIdentifiers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetFieldIdentifiers">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetFieldIdentifiers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldValues">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetFieldValues" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindControllerIDs">
+      <soap12:operation soapAction="http://www.bacsoft.com/FindControllerIDs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindControllers">
+      <soap12:operation soapAction="http://www.bacsoft.com/FindControllers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <soap12:operation soapAction="http://www.bacsoft.com/ValidateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://www.bacsoft.com/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap12:operation soapAction="http://www.bacsoft.com/Logout" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Browse">
+      <soap12:operation soapAction="http://www.bacsoft.com/Browse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Browse_V2">
+      <soap12:operation soapAction="http://www.bacsoft.com/Browse_V2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Browse_V3">
+      <soap12:operation soapAction="http://www.bacsoft.com/Browse_V3" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoggedInUser">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetLoggedInUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserPermissions">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetUserPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllersStatus">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetControllersStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllersStatus_V2">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetControllersStatus_V2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerFields">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetControllerFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerFieldsEx">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetControllerFieldsEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetField">
+      <soap12:operation soapAction="http://www.bacsoft.com/SetField" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFieldEx">
+      <soap12:operation soapAction="http://www.bacsoft.com/SetFieldEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFieldWithTimestamp">
+      <soap12:operation soapAction="http://www.bacsoft.com/SetFieldWithTimestamp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetEventAlarmMode">
+      <soap12:operation soapAction="http://www.bacsoft.com/SetEventAlarmMode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetEventSetPointValue">
+      <soap12:operation soapAction="http://www.bacsoft.com/SetEventSetPointValue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetEventSetPointValue_V2">
+      <soap12:operation soapAction="http://www.bacsoft.com/SetEventSetPointValue_V2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerEvents">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetControllerEvents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerEvents_V2">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetControllerEvents_V2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllersEvents">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetControllersEvents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllersEvents_V2">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetControllersEvents_V2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerActiveEvents">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetControllerActiveEvents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessagesHistory">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetMessagesHistory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessagesHistoryTotals">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetMessagesHistoryTotals" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsHistory">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetEventsHistory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsHistory">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetFieldsHistory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsHistory2">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetFieldsHistory2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsHistoryByArrival">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetFieldsHistoryByArrival" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsPartialHistory">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetFieldsPartialHistory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsPartialHistory2">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetFieldsPartialHistory2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsPartialHistoryByArrival2">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetFieldsPartialHistoryByArrival2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldsPartialHistoryByArrival">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetFieldsPartialHistoryByArrival" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSMS">
+      <soap12:operation soapAction="http://www.bacsoft.com/SendSMS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSMSToUnit">
+      <soap12:operation soapAction="http://www.bacsoft.com/SendSMSToUnit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMultiSMS">
+      <soap12:operation soapAction="http://www.bacsoft.com/SendMultiSMS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMultiSMSToUnits">
+      <soap12:operation soapAction="http://www.bacsoft.com/SendMultiSMSToUnits" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSMSThroughUnit">
+      <soap12:operation soapAction="http://www.bacsoft.com/SendSMSThroughUnit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSMSThroughUnitToUnit">
+      <soap12:operation soapAction="http://www.bacsoft.com/SendSMSThroughUnitToUnit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendRawCommand">
+      <soap12:operation soapAction="http://www.bacsoft.com/SendRawCommand" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendBiDirectionStream">
+      <soap12:operation soapAction="http://www.bacsoft.com/SendBiDirectionStream" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProgramPLC">
+      <soap12:operation soapAction="http://www.bacsoft.com/ProgramPLC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnterModemMode">
+      <soap12:operation soapAction="http://www.bacsoft.com/EnterModemMode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnitLog">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetUnitLog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnitParameters">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetUnitParameters" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUnitParameters">
+      <soap12:operation soapAction="http://www.bacsoft.com/UpdateUnitParameters" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCellularSuppliersList">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetCellularSuppliersList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InitUnit">
+      <soap12:operation soapAction="http://www.bacsoft.com/InitUnit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetUnit">
+      <soap12:operation soapAction="http://www.bacsoft.com/ResetUnit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PingUnit">
+      <soap12:operation soapAction="http://www.bacsoft.com/PingUnit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetControllerIdentifiers">
+      <soap12:operation soapAction="http://www.bacsoft.com/GetControllerIdentifiers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+      <soap:address location="http://iot.eu1.bacsoft.com/XmlAPI/service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+      <soap12:address location="http://iot.eu1.bacsoft.com/XmlAPI/service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

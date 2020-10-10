@@ -1,0 +1,40 @@
+{
+   "Controller:4488" : {
+		"throughputFieldId":"Field:638532:4488",
+		"lastDayOverallFieldId":"Field:638546:4488",
+		"currentDayOverallFieldId":"Field:638534:4488"
+	},
+	"Controller:4461": {
+		"throughputFieldId":"Field:639372:4461",
+		"lastDayOverallFieldId":"Field:639386:4461",
+		"currentDayOverallFieldId":"Field:639374:4461"
+	},
+	"Controller:4462":{
+		"throughputFieldId":"Field:640249:4462",
+		"lastDayOverallFieldId": "Field:640252:4462",
+		"currentDayOverallFieldId":"Field:640253:4462"
+	},
+	"Controller:4460":{
+		"throughputFieldId":"Field:639155:4460",
+		"lastDayOverallFieldId": "Field:639157:4460",
+		"currentDayOverallFieldId":"Field:639158:4460"
+	},
+	"Controller:4456":{
+		"throughputFieldId":"Field:639035:4456",
+		"lastDayOverallFieldId": "Field:639065:4456",
+		"currentDayOverallFieldId":"Field:639066:4456"
+	},
+	"Controller:4469":{
+		"throughputFieldId":"Field:638731:4469",
+		"lastDayOverallFieldId": "Field:638733:4469",
+		"currentDayOverallFieldId":"Field:638734:4469"
+	},
+	
+	"Controller:4503":{
+		"throughputFieldId":"Field:640724:4503",
+		"lastDayOverallFieldId": "Field:640713:4503",
+		"currentDayOverallFieldId":"Field:640714:4503"
+	}
+	
+	
+}

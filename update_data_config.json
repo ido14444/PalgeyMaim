@@ -1,0 +1,82 @@
+{
+  "A301": {
+    "controllerId": "Controller:4273",
+    "fieldId": 632045
+  },
+  "A302": {
+    "controllerId": "Controller:4259",
+    "fieldId": 632045
+  },
+  "A201": {
+    "controllerId": "Controller:4356",
+    "fieldId": 636849
+  },
+  "A202": {
+    "controllerId": "Controller:4356",
+    "fieldId": 636871
+  },
+  "G302": {
+    "controllerId": "Controller:4469",
+    "fieldId": 638735
+  },
+  "G303": {
+    "controllerId": "Controller:4509",
+    "fieldId": 632045
+  },
+  "G304": {
+    "controllerId": "Controller:4295",
+    "fieldId": 639207
+  },
+  "G306": {
+    "controllerId": "Controller:4278",
+    "fieldId": 632045
+  },
+  "G309": {
+    "controllerId": "Controller:4306",
+    "fieldId": 631330
+  },
+  "G310": {
+    "controllerId": "Controller:4306",
+    "fieldId": 631350
+  },
+  "G314": {
+    "controllerId": "Controller:4271",
+    "fieldId": 632045
+  },
+  "G313": {
+    "controllerId": "Controller:4287",
+    "fieldId": 632045
+  },
+  "G311": {
+    "controllerId": "Controller:4266",
+    "fieldId": 632045
+  },
+  "T307": {
+    "controllerId": "Controller:4267",
+    "fieldId": 632045
+  },
+  "T304": {
+    "controllerId": "Controller:4277",
+    "fieldId": 632045
+  },
+  "T302": {
+    "controllerId": "Controller:4272",
+    "fieldId": 632045
+  },
+  "MC301": {
+    "controllerId": "Controller:4253",
+    "fieldId": 618959
+  },
+  "N302": {
+    "controllerId": "Controller:4284",
+    "fieldId": 632045
+  },
+  "N303": {
+    "controllerId": "Controller:4285",
+    "fieldId": 632045
+  },
+  "W402": {
+    "controllerId": "Controller:4462",
+    "fieldId": 640254
+  }
+}

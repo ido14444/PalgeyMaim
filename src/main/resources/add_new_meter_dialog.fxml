@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="323.0" prefWidth="563.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.palgeymaim.client.controller.AddNewMeterDialogController">
+   <children>
+      <Label layoutX="220.0" layoutY="42.0" text="הוספת מד חדש">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Label>
+      <VBox layoutX="185.0" layoutY="102.0" prefHeight="102.0" prefWidth="145.0" spacing="15.0">
+         <children>
+            <TextField fx:id="symbnum" promptText="W411 : לדוגמא">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="bacsoftControllerId" promptText="לדוגמא :  4451">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="bacsoftFieldId" promptText="לדוגמא : 630245">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </TextField>
+         </children>
+      </VBox>
+      <VBox layoutX="333.0" layoutY="101.0" prefHeight="111.0" prefWidth="100.0" spacing="30.0">
+         <children>
+            <Label text="מזהה מד:">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Label>
+            <Label text="מזהה בענן:">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Label>
+            <Label text="מזהה שדה בענן:">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Button fx:id="createBtn" layoutX="257.0" layoutY="246.0" mnemonicParsing="false" onAction="#create" text="יצירה">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

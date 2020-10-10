@@ -1,0 +1,59 @@
+{
+   "Controller:4488" : {
+	"Field:638551:4488":true,
+	"Field:638535:4488":true,
+	"Field:638550:4488":true,
+	"Field:638546:4488":true,
+	"Field:638534:4488":true,
+	"Field:638547:4488":true,
+	"Field:638532:4488":true,
+	"Field:638533:4488":true
+	},
+	"Controller:4461": {
+	"Field:639390:4461":true,
+	"Field:639389:4461":true,
+	"Field:639385:4461":true,
+	"Field:639386:4461":true,
+	"Field:639374:4461":true,
+	"Field:639373:4461":true,
+	"Field:639371:4461":true,
+	"Field:639372:4461":true
+	},
+	"Controller:4462":{
+	"Field:640254:4462":true,
+	"Field:640252:4462":true,
+	"Field:640253:4462":true,
+	"Field:640249:4462":true
+	},
+	"Controller:4460":{
+	"Field:639159:4460":true,
+	"Field:639157:4460":true,
+	"Field:639158:4460":true,
+	"Field:639155:4460":true
+	},
+	"Controller:4456":{
+	"Field:640770:4456":true,
+	"Field:639065:4456":true,
+	"Field:639066:4456":true,
+	"Field:639035:4456":true
+	},
+	"Controller:4469":{
+	"Field:638735:4469":true,
+	"Field:638734:4469":true,
+	"Field:638733:4469":true,
+	"Field:638731:4469":true
+	},
+	
+	"Controller:4503":{
+	"Field:640720:4503":true,
+	"Field:640721:4503":true,
+	"Field:640713:4503":true,
+	"Field:640715:4503":true,
+	"Field:640714:4503":true,
+	"Field:640716:4503":true,
+	"Field:640724:4503":true,
+	"Field:640725:4503":true
+	}
+	
+	
+}
